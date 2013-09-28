@@ -6,7 +6,7 @@ Angularjs directive that binds scope-driven social buttons! Even includes link s
 
 
 #How to use:
-###Requires jQuery. :-(
+###Requires jQuery.
 
  1.Include the module social-linker in your app module.
  2.Import and add a socialLinkerOpts object to your rootScope (had to use it to avoid prototypical inheritence issues)
@@ -29,14 +29,14 @@ $rootScope.socialLinkerOpts = {
 }
 ```
 
-4. Add the corresponding types and the directive to each of you link elements, like:
+ 4.Add the corresponding types and the directive to each of you link elements, like:
 
 ```html
 <a social-linker social-linker-type="twitter"></a>   
 <a social-linker social-linker-type="facebook"></a>
 ```
 
-5. Smack a turtle
+ 5.Smack a turtle
 
 
 ***CURRENT SOCIAL TYPES:***
