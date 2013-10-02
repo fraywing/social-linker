@@ -46,6 +46,7 @@ $scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = {
  5.Smack a turtle
 
 ***Properies***
+
 ```watch``` ***ARRAY*** GLOBAL an array of routes you'd like social-linker to update on, leave this out to check ALWAYS
 
 ```locationChange``` ***BOOL*** GLOBAL wan't this to update on route change? No? Make this false.
