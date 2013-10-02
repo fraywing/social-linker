@@ -47,10 +47,15 @@ $scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = {
 
 ***Properies***
 ```watch``` ***ARRAY*** GLOBAL an array of routes you'd like social-linker to update on, leave this out to check ALWAYS
+
 ```locationChange``` ***BOOL*** GLOBAL wan't this to update on route change? No? Make this false.
+
 ```title``` ***STRING*** Title of the page to be shared
+
 ```description``` ***STRING*** Description of page to be shared
+
 ```image``` ***STRING*** an image of what will be shared
+
 ```url``` ***STRING*** A link to the page that will be shared
 
 ***CURRENT SOCIAL TYPES:***
