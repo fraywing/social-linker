@@ -3,6 +3,10 @@
 * Author: Austin Anderson
 * License: MIT
 *
+*UPDATE 10/1/2013
+*added watch global param, which will watch route changes to limit when the buttons are updated. Abtaining from watch will cause an update on ALL route changes
+*added check for both $scope and $rootScope to find socialLinkerOpts
+*
 *How to use:
 *Requires jQuery.
 *
@@ -12,7 +16,8 @@
 *
 * Like:
 *
-* $rootScope.socialLinkerOpts = {
+* $scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = { 
+*   watch : ['/posts'/],
     twitter : {
 	 title : $scope.title,
 	 description : $scope.subTitle,
@@ -44,9 +49,7 @@
 * 4. Meow Mix
 */
 
-var socialLinker = angular.module('social-linker', []);
-
-socialLinker ('socialLinker', function($location,$timeout,$rootScope,$http,$q){
+directives.directive('socialLinker', function($location,$timeout,$rootScope,$http,$q){
     var methods = {
 	linkedin : function(title,desc,image,url){
 	   var title = !!!title ? "" : "&title="+encodeURIComponent(title),
@@ -103,7 +106,27 @@ socialLinker ('socialLinker', function($location,$timeout,$rootScope,$http,$q){
 	    }else{
 	    el[0].href = response;
 	    }
-	}/*,
+	},
+	goodPath : function(watch,path){
+	    if (watch == true) {
+		//check on every route change
+		return true;
+	    }
+	    var goodPath = false;
+	    for(var x in watch){
+		 var escapedQuery = watch[x].replace(/\//g, "\\/"),
+			    escapedPath =  path;
+			    var pattern = new RegExp(escapedQuery,'g');
+			    if (pattern.test(escapedPath)){
+				goodPath = true;
+			    }
+			    else{
+				goodPath = false;
+			    }
+		}
+	    return goodPath;
+	}
+	/*,
 	lightbox : function(url){ //cross framing blocked...duh
 	    console.log(url);
 	    var iframe = "<iframe src='"+url+"' style='height:400px; width:500px;'></iframe>",
@@ -121,23 +144,40 @@ socialLinker ('socialLinker', function($location,$timeout,$rootScope,$http,$q){
 	    },
 	link : function(scope,el,attr){
 	    var obName = attr.socialLinkerType;
+	    //rootscope check
 	    $rootScope.$watch("socialLinkerOpts."+obName+".url", function(){
 		if (!!!$rootScope.socialLinkerOpts) {
+		    return false;
+		}
+		run(); });
+	    //scope check
+	    scope.$watch("socialLinkerOpts."+obName+".url", function(){
+		if (!!!scope.socialLinkerOpts) {
+		    return false;
+		}
+		run(); });
+	    
+	    function run(){
+		if (!!!scope.socialLinkerOpts && !!!$rootScope.socialLinkerOpts) {
 		    console.log("Social Linker Options Not Found!");
 		    return false;
 		}
 		var locationChange = $rootScope["socialLinkerOpts"].locationChange,
+		watch =  !!!$rootScope["socialLinkerOpts"].watch ? true : $rootScope["socialLinkerOpts"].watch,
 		//lightbox = !!!$rootScope["socialLinkerOpts"] && $rootScope["socialLinkerOpts"] != true ? false : true;
-		lightbox = false;
+		lightbox = false,
+		goodPath = methods.goodPath(watch,$location.path()),
 		opts = $rootScope["socialLinkerOpts"][obName];
-		if (locationChange) {
+
+		if (locationChange && goodPath) {
 		    scope.$on('$locationChangeStart',function(scope,next,current){
-			    doCheck();			
+			    if (methods.goodPath(watch,$location.path())) {
+				doCheck();	
+			    }	
 			});
 			    //do the check anyway on directive load
-			    doCheck();	
+			doCheck();	
 		}
-
 		function doCheck() {
 		    var nOp = $rootScope["socialLinkerOpts"][obName];
 	
@@ -154,7 +194,7 @@ socialLinker ('socialLinker', function($location,$timeout,$rootScope,$http,$q){
 			    methods.populate(el,response,lightbox);
 			}
 		}
-	    });
+	    };
 	}
     }
     
