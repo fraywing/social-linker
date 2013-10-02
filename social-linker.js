@@ -32,8 +32,8 @@
 *
 *4. Add the corresponding types and the directive to each of you link elements, like:
 *
-*  <a social-linker social-linker-type="twitter"></a>
-*   <a social-linker social-linker-type="facebook"></a>
+*  <div social-linker social-linker-type="twitter"></div>
+*   <div social-linker social-linker-type="facebook"></div>
 *
 *5. Smack a turtle
 *
