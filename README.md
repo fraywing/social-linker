@@ -3,21 +3,25 @@ social-linker
 
 Angularjs directive that binds scope-driven social buttons! Even includes link shrinker for twitter!
 
-###social-linker v0.0.1
+###social-linker v0.0.2
 
 #How to use:
 ###Requires jQuery.
 
- 1.Include the module social-linker in your app module.
+ 1.Include the directive script.
  
- 2.Import and add a socialLinkerOpts object to your rootScope (had to use it to avoid prototypical inheritence issues)
+ 2.Include the module social-linker in your app module.
  
- 3.Add each of your social objects to the socialLinkerOpts object.
+ 3.Import and add a socialLinkerOpts object to your rootScope (had to use it to avoid prototypical inheritence issues)
+ 
+ 4.Add each of your social objects to the socialLinkerOpts object.
 
 ***Like:***
 
 ```javascript 
 $rootScope.socialLinkerOpts = {
+ watch : ["/posts/","/IdontWantIthere/"],
+ locationChange : true,
  twitter : {
  title : $scope.title,
  description : $scope.subTitle,
