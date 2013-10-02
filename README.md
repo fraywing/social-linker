@@ -19,7 +19,7 @@ Angularjs directive that binds scope-driven social buttons! Even includes link s
 ***Like:***
 
 ```javascript 
-$rootScope.socialLinkerOpts = {
+$scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = { 
  watch : ["/posts/","/IdontWantIthere/"],
  locationChange : true,
  twitter : {
@@ -31,6 +31,7 @@ $rootScope.socialLinkerOpts = {
  title : $scope.title,
  description : $scope.subTitle,
  url : "http://www.awesomesite.com/post/"+$scope.postURL,
+ image : "http://www.sweetcoolthing.com/image1.png"
  }
 }
 ```
@@ -44,6 +45,13 @@ $rootScope.socialLinkerOpts = {
 
  5.Smack a turtle
 
+***Properies***
+```watch``` ***ARRAY*** GLOBAL an array of routes you'd like social-linker to update on, leave this out to check ALWAYS
+```locationChange``` ***BOOL*** GLOBAL wan't this to update on route change? No? Make this false.
+```title``` ***STRING*** Title of the page to be shared
+```description``` ***STRING*** Description of page to be shared
+```image``` ***STRING*** an image of what will be shared
+```url``` ***STRING*** A link to the page that will be shared
 
 ***CURRENT SOCIAL TYPES:***
 reddit,facebook,linkedin,twitter,googleplus
