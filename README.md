@@ -3,7 +3,7 @@ social-linker
 
 Angularjs directive that binds scope-driven social buttons! Even includes link shrinker for twitter!
 
-###social-linker v0.0.2
+###social-linker v1.0.2
 
 #How to use:
 ###Requires jQuery.
