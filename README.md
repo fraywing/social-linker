@@ -20,7 +20,7 @@ Angularjs directive that binds scope-driven social buttons! Even includes link s
 
 ```javascript 
 $scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = { 
- watch : ["/posts/","/IdontWantIthere/"],
+ watch : ["/posts/","/placeToDisplay/"],
  locationChange : true,
  twitter : {
  title : $scope.title,
