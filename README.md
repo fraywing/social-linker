@@ -43,7 +43,6 @@ $scope.socialLinkerOpts = { OR $rootScope.socialLinkerOpts = {
 <a social-linker social-linker-type="facebook"></a>
 ```
 
- 5.Smack a turtle
 
 ***Properies***
 
@@ -67,4 +66,3 @@ reddit,facebook,linkedin,twitter,googleplus
  1. Remove jQuery
  2. Add more Types
  3. Add popup support
- 4. Meow Mix
